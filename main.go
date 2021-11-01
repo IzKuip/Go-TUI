@@ -13,14 +13,11 @@ func main() {
 	clrScrn()
 
 	w, h := getTerminalSize()
+	drawRectangle(-1, 0, w, 1, red)
+	drawRectangle(-1, 2, w, h-2, green)
+	fmt.Printf("\033[0;0f")
 
-	fmt.Printf("\nTerminal Size: %vx%v\n", w, h)
-
-	drawRectangle(20, 10, 20, 10, red)
-	drawRectangle(21, 11, 20, 10, green)
-	drawRectangle(22, 12, 20, 10, blue)
-
-	fmt.Print("\nPress 'Enter' to continue...")
+	fmt.Print("")
 	bufio.NewReader(os.Stdin).ReadBytes('\n')
 }
 
@@ -29,7 +26,6 @@ func clrScrn() {
 }
 
 func drawRectangle(x int, y int, w int, h int, color string) {
-	fmt.Printf("Printing rect: x: %v, y: %v, size: %vx%v\n", x, y, w, h)
 	// Save current cursor position
 	fmt.Printf("\033[s")
 
