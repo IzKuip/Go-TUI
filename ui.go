@@ -13,7 +13,7 @@ func drawRectangle(x int, y int, w int, h int, color chalk.Style) {
 	fmt.Printf("\033[s")
 
 	// Set new cursor position
-	fmt.Printf("\033[%v;%vf", y, x+1)
+	fmt.Printf("\033[%v;%vH", y, x+1)
 
 	// Print rectangle
 	for i := 0; i < h; i++ {
@@ -39,7 +39,7 @@ func drawText(x int, y int, text string, color chalk.Style) {
 	fmt.Printf("\033[s")
 
 	// Set new cursor position
-	fmt.Printf("\033[%v;%vf", y, x+1)
+	fmt.Printf("\033[%v;%vH", y, x+1)
 
 	// Print Text
 	fmt.Printf("%s%s%s", color, text, chalk.Reset)

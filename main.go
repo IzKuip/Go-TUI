@@ -24,7 +24,7 @@ func main() {
 	drawDialog("aboobooaboobooabooboo ", "hello world", 20, 15)
 
 	fmt.Print("")
-	fmt.Printf("\033[0;0f\033[2A")
+	fmt.Printf("\033[0;0H\033[2A")
 
 	bufio.NewReader(os.Stdin).ReadBytes('\n')
 
