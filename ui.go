@@ -8,7 +8,7 @@ import (
 )
 
 func drawRectangle(x int, y int, w int, h int, color chalk.Style) {
-	x = x - 1
+	x -= 1
 
 	// Save current cursor position
 	fmt.Printf("\033[s")
@@ -43,7 +43,7 @@ func drawText(x int, y int, text string, color chalk.Style) {
 func drawDialog(title string, message string, x int, y int) {
 	// Specify the width and height default values
 	width := 0
-	height := 6
+	height := 4
 
 	// Set the dialog width to the length of the title
 	width = len(title) + 2
@@ -59,8 +59,6 @@ func drawDialog(title string, message string, x int, y int) {
 	drawRectangle(x, y, width, height, whiteBlueBg)      // Draw Titlebar
 	drawRectangle(x+2, y+1, width, height, blackBlackBg) // Draw Shadow
 	drawRectangle(x, y+1, width, height-1, blackWhiteBg) // Draw Body
-	drawRectangle(x+width-6, y+4, 4, 1, blackBlueBg)     // Draw OK button background
-	drawText(x+width-5, y+4, "OK", whiteBlueBg)          // Draw OK button text
 	drawText(x, y, title, whiteBlueBg)                   // Draw window title
 	drawText(x+2, y+2, message, blackWhiteBg)            // Draw window message
 }
@@ -86,9 +84,13 @@ func getTerminalSize() (w int, h int) {
 
 var (
 	whiteYellowBg chalk.Style = chalk.White.NewStyle().WithBackground(chalk.Yellow)
+	blackYellowBg chalk.Style = chalk.Black.NewStyle().WithBackground(chalk.Yellow)
+	blueYellowBg  chalk.Style = chalk.Blue.NewStyle().WithBackground(chalk.Yellow)
 	whiteBlueBg   chalk.Style = chalk.White.NewStyle().WithBackground(chalk.Blue)
 	whiteBlackBg  chalk.Style = chalk.White.NewStyle().WithBackground(chalk.Black)
 	blackWhiteBg  chalk.Style = chalk.Black.NewStyle().WithBackground(chalk.White)
 	blackBlueBg   chalk.Style = chalk.Black.NewStyle().WithBackground(chalk.Blue)
 	blackBlackBg  chalk.Style = chalk.Black.NewStyle().WithBackground(chalk.Black)
+	redRedBg      chalk.Style = chalk.Red.NewStyle().WithBackground(chalk.Red)
+	greenGreenBg  chalk.Style = chalk.Green.NewStyle().WithBackground(chalk.Green)
 )
