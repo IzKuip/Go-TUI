@@ -15,8 +15,8 @@ func main() {
 	w, h := getTerminalSize()
 	out := fmt.Sprint(w) + "x" + fmt.Sprint(h)
 	drawText(w-len(out), 0, out, white, chalk.Black)
-	drawRectangle(0, 0, w, 1, blue)
-	drawRectangle(0, 2, w, h-2, darkGray)
+	drawRectangle(1, 0, w, 1, blue)
+	drawRectangle(1, 2, w, h-2, darkGray)
 	drawDialog("error", "The system cannot find the file specified", 40, 6)
 	drawDialog("aboobooaboobooabooboo ", "hello world", 30, 15)
 
