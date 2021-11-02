@@ -18,7 +18,9 @@ func main() {
 	drawText(w-len(out), 0, out, chalk.White.NewStyle().WithBackground(chalk.Black))
 
 	drawRectangle(0, 0, w, 1, chalk.White.NewStyle().WithBackground(chalk.Blue))
-	drawRectangle(0, 2, w, h-1, chalk.Black.NewStyle().WithBackground(chalk.Yellow))
+	for i := 2; i < h; i++ {
+		drawRectangle(0, i, w, 1, chalk.White.NewStyle().WithBackground(chalk.Yellow))
+	}
 
 	drawDialog("error", "The system cannot find the file specified", 30, 6)
 	drawDialog("aboobooaboobooabooboo ", "hello world", 20, 15)
