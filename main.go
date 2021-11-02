@@ -18,7 +18,7 @@ func main() {
 	drawText(w-len(out), 0, out, chalk.White.NewStyle().WithBackground(chalk.Black))
 
 	drawRectangle(0, 0, w, 1, chalk.White.NewStyle().WithBackground(chalk.Blue))
-	for i := 2; i < h; i++ {
+	for i := 2; i < h+1; i++ {
 		drawRectangle(0, i, w, 1, chalk.White.NewStyle().WithBackground(chalk.Yellow))
 	}
 
