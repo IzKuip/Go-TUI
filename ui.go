@@ -49,7 +49,7 @@ func drawDialog(title string, message string, x int, y int) {
 	width = len(title) + 2
 
 	// Add symbol in front of title
-	title = " ~ " + title
+	title = " @ " + title
 
 	// If the length of the message is higher, set the dialog width to it instead
 	if len(message)+2 > width {
