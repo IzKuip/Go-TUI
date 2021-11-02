@@ -14,73 +14,19 @@ func main() {
 
 	w, h := getTerminalSize()
 	out := fmt.Sprint(w) + "x" + fmt.Sprint(h)
-	drawText(w-len(out), 0, out, white, black)
-	/* drawRectangle(0, 0, w, 1, red)
-	drawRectangle(0, 2, w, h-2, green) */
-	drawRectangle(5, 5, 50, 15, red)
-	drawRectangle(6, 6, 50, 15, green)
-	drawRectangle(7, 7, 50, 15, blue)
-	//drawDialog("error", "The system cannot find the file specified", 40, 6)
-	//drawDialog("aboobooaboobooabooboo ", "hello world", 30, 15)
-	fmt.Printf("\033[0;0f")
+	drawText(w-len(out), 0, out, white, chalk.Black)
+	drawRectangle(0, 0, w, 1, blue)
+	drawRectangle(0, 2, w, h-2, darkGray)
+	drawDialog("error", "The system cannot find the file specified", 40, 6)
+	drawDialog("aboobooaboobooabooboo ", "hello world", 30, 15)
 
 	fmt.Print("")
 	bufio.NewReader(os.Stdin).ReadBytes('\n')
-
-	clrScrn()
+	main()
 }
 
 func clrScrn() {
 	fmt.Printf("%s\033[H\033[2J", chalk.Reset)
-}
-
-func drawRectangle(x int, y int, w int, h int, color string) {
-	x = x - 1
-	// Save current cursor position
-	fmt.Printf("\033[s")
-
-	// Set new cursor position
-	fmt.Printf("\033[%v;%vf", y, x+1)
-
-	// Print rectangle
-	for i := 0; i < h; i++ {
-		for ii := 0; ii < w; ii++ {
-			fmt.Printf("%s█%s", color, chalk.Reset)
-		}
-
-		// Set the x position of the new line to the specified x position
-		fmt.Printf("\n\033[%vC", x)
-	}
-
-	// Restore cursor position
-	fmt.Printf("\033[u")
-}
-
-func drawText(x int, y int, text string, fg string, bg string) {
-	x = x - 1
-	// Save current cursor position
-	fmt.Printf("\033[s")
-
-	// Set new cursor position
-	fmt.Printf("\033[%v;%vf", y, x+1)
-
-	// Print Text
-	fmt.Printf("%s%s%s%s%s", fg, bg, text, defaultColor, black)
-}
-
-func drawDialog(title string, message string, x int, y int) {
-	width := 0
-	height := 5
-
-	width = len(title) + 2
-	if len(message)+2 > width {
-		width = len(message) + 2
-	}
-
-	drawRectangle(x, y, width, height, blue)
-	drawRectangle(x, y+1, width, height-1, lightGray)
-	drawText(x, y, title, lightBlueBackground, white)
-	drawText(x+1, y+2, message, whiteBackground, black)
 }
 
 func getTerminalSize() (w int, h int) {
