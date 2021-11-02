@@ -38,6 +38,9 @@ func drawText(x int, y int, text string, color chalk.Style) {
 
 	// Print Text
 	fmt.Printf("%s%s%s", color, text, chalk.Reset)
+
+	// Restore cursor position
+	fmt.Printf("\033[u")
 }
 
 func drawDialog(title string, message string, x int, y int) {
