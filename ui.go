@@ -6,7 +6,7 @@ import (
 	"github.com/ttacon/chalk"
 )
 
-func drawRectangle(x int, y int, w int, h int, color string) {
+func drawRectangle(x int, y int, w int, h int, color chalk.Style) {
 	x = x - 1
 	// Save current cursor position
 	fmt.Printf("\033[s")
@@ -17,7 +17,7 @@ func drawRectangle(x int, y int, w int, h int, color string) {
 	// Print rectangle
 	for i := 0; i < h; i++ {
 		for ii := 0; ii < w; ii++ {
-			fmt.Printf("%s█%s", color, chalk.Reset)
+			fmt.Printf("%s %s", color, chalk.Reset)
 		}
 
 		// Set the x position of the new line to the specified x position
@@ -28,7 +28,7 @@ func drawRectangle(x int, y int, w int, h int, color string) {
 	fmt.Printf("\033[u")
 }
 
-func drawText(x int, y int, text string, fg string, bg chalk.Color) {
+func drawText(x int, y int, text string, color chalk.Style) {
 	x = x - 1
 	// Save current cursor position
 	fmt.Printf("\033[s")
@@ -37,7 +37,7 @@ func drawText(x int, y int, text string, fg string, bg chalk.Color) {
 	fmt.Printf("\033[%v;%vf", y, x+1)
 
 	// Print Text
-	fmt.Printf("%s%s%s%s%s", fg, bg, text, defaultColor, black)
+	fmt.Printf("%s%s%s", color, text, chalk.Reset)
 }
 
 func drawDialog(title string, message string, x int, y int) {
@@ -49,8 +49,8 @@ func drawDialog(title string, message string, x int, y int) {
 		width = len(message) + 2
 	}
 
-	drawRectangle(x, y, width, height, blue)
-	drawRectangle(x, y+1, width, height-1, lightGray)
-	drawText(x, y, title, lightBlueBackground, chalk.White)
-	drawText(x+1, y+2, message, whiteBackground, chalk.Black)
+	drawRectangle(x, y, width, height, chalk.White.NewStyle().WithBackground(chalk.Blue))
+	drawRectangle(x, y+1, width, height-1, chalk.Black.NewStyle().WithBackground(chalk.White))
+	drawText(x, y, title, chalk.White.NewStyle().WithBackground(chalk.Blue))
+	drawText(x+1, y+2, message, chalk.Black.NewStyle().WithBackground(chalk.White))
 }
